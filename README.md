@@ -1,8 +1,13 @@
 # potenzaMentale
 
-Contiene una semplice app web in React per giochi di potenziamento cognitivo.
+# Contenuto
 
-Il codice dell'app è nella cartella `potenza-game`.
+Il repository contiene una semplice app web in React pensata per giochi di potenziamento cognitivo.
+
+## L'app
+
+Il codice sorgente si trova nella cartella `potenza-game`. Per avviarla è necessario spostarsi in quella directory ed installare le dipendenze.
+
 # Potenza Mentale
 
 Questa semplice app in React propone un gioco di discriminazione visiva pensato per bambini con autismo. L'interfaccia è minimale, a schermo intero, con icone grandi e rinforzi visivi e sonori.
@@ -10,6 +15,7 @@ Questa semplice app in React propone un gioco di discriminazione visiva pensato 
 ## Avvio
 
 ```bash
+cd potenza-game
 npm install
 npm run dev
 ```
