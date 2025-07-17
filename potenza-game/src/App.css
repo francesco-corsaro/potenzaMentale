@@ -1,0 +1,20 @@
+.App {
+  padding: 1rem;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.token-counter {
+  margin-top: 1rem;
+  font-size: 2rem;
+}
+
+.reward {
+  width: 80px;
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
