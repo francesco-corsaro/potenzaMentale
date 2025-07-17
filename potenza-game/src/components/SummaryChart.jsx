@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts'
 
 function SummaryChart() {
