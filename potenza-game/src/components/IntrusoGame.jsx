@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import correctSound from '../assets/sounds/correct.mp3'
 import tryAgainSound from '../assets/sounds/tryagain.mp3'
 import apple from '../assets/images/apple.png'
@@ -18,8 +18,8 @@ const shuffle = (arr) => arr.sort(() => Math.random() - 0.5)
 function IntrusoGame({ onCorrect }) {
   const [items, setItems] = useState([])
   const [feedback, setFeedback] = useState(null)
-  const correctAudio = new Audio(correctSound)
-  const wrongAudio = new Audio(tryAgainSound)
+  const correctAudio = useRef(new Audio(correctSound))
+  const wrongAudio = useRef(new Audio(tryAgainSound))
 
   useEffect(() => {
     setItems(shuffle([...images]))
@@ -28,11 +28,11 @@ function IntrusoGame({ onCorrect }) {
   const handleClick = (item) => {
     const isIntruder = item.category !== 'fruit'
     if (isIntruder) {
-      correctAudio.play()
+      correctAudio.current.play()
       setFeedback('correct')
       onCorrect()
     } else {
-      wrongAudio.play()
+      wrongAudio.current.play()
       setFeedback('wrong')
       const stats = JSON.parse(localStorage.getItem('stats') || '{"correct":0,"wrong":0}')
       localStorage.setItem('stats', JSON.stringify({ ...stats, wrong: stats.wrong + 1 }))
@@ -48,7 +48,15 @@ function IntrusoGame({ onCorrect }) {
       <h2>Trova l\'intruso</h2>
       <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         {items.map((img, idx) => (
-          <img key={idx} src={img.src} alt="item" width={120} height={120} style={{ cursor: 'pointer' }} onClick={() => handleClick(img)} />
+          <img
+            key={idx}
+            src={img.src}
+            alt={img.category}
+            width={120}
+            height={120}
+            style={{ cursor: 'pointer' }}
+            onClick={() => handleClick(img)}
+          />
         ))}
       </div>
       {feedback === 'correct' && <div style={{ fontSize: '4rem', color: 'green' }}>😊</div>}

@@ -10,9 +10,15 @@ function App() {
   const handleCorrect = () => {
     const stats = JSON.parse(localStorage.getItem('stats') || '{"correct":0,"wrong":0}')
     localStorage.setItem('stats', JSON.stringify({ ...stats, correct: stats.correct + 1 }))
+
     setTokens((t) => {
       const newT = t + 1
-      return newT >= 5 ? 0 : newT
+      if (newT >= 5) {
+        // keep the reward visible for a short time before resetting
+        setTimeout(() => setTokens(0), 3000)
+        return 5
+      }
+      return newT
     })
   }
 
