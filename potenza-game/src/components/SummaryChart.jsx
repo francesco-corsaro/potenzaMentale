@@ -1,16 +1,11 @@
-import { useEffect, useState } from 'react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts'
 
 function SummaryChart() {
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-    const stats = JSON.parse(localStorage.getItem('stats') || '{"correct":0,"wrong":0}')
-    setData([
-      { name: 'Corrette', value: stats.correct },
-      { name: 'Sbagliate', value: stats.wrong }
-    ])
-  }, [])
+  const stats = JSON.parse(localStorage.getItem('stats') || '{"correct":0,"wrong":0}')
+  const data = [
+    { name: 'Corrette', value: stats.correct },
+    { name: 'Sbagliate', value: stats.wrong },
+  ]
 
   return (
     <ResponsiveContainer width="100%" height={200}>
